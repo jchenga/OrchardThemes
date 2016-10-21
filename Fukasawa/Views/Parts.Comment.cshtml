@@ -1,0 +1,31 @@
+﻿@using Orchard.Comments.Models
+@using Orchard.Comments
+
+@{
+    CommentPart comment = Model.ContentPart;
+    CommentsPart comments = Model.CommentedOnContentItem.As<CommentsPart>();
+    var isAuthorized = AuthorizedFor(Permissions.AddComment, Model.ContentItem);
+
+    var children = New.List(Items: Model.Items);
+    
+}
+
+<li id="li-comment-@comment.Id" class="comment">
+    <div id="comment-@comment.Id" class="comment">
+        <div class="comment-header">
+            <div class="comment-header-inner">
+                <h4>@comment.Author</h4>
+                <div class="comment-meta">
+                    @Display.CommentMetadata(ContentPart: comment)
+                </div>
+                @if (comments.ThreadedComments && comments.CommentsActive && isAuthorized) {
+                    @Display.CommentReplyButton(ContentPart: comment)
+                }
+            </div>
+            <div class="comment-content post-content">
+                @Display.CommentText(ContentPart: Model.ContentPart, ContentItemExtensions: Model.ContentItem)
+            </div>
+        </div>
+    </div>
+    @Display(children)
+</li>

@@ -1,0 +1,11 @@
+﻿@using Orchard.ContentManagement
+@using Orchard.MediaLibrary.Models
+@model dynamic
+
+@{
+    ContentItem contentItem = Model.ContentItem;
+    var media = contentItem.As<MediaPart>();
+}
+    
+    <img src="@Display.ResizeMediaUrl(Width: 508, Alignment: "middlecenter", Path: media.MediaUrl)"/>
+  

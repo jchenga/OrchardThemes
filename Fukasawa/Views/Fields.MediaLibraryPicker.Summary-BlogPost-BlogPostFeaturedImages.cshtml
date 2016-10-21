@@ -1,0 +1,47 @@
+﻿@using Fukasawa
+@using Orchard.Blogs.Models
+@using Orchard.ContentManagement
+@using Orchard.MediaLibrary.Fields
+
+@{
+    var content = (IContent)Model.ContentItem;
+    var contentPart = (ContentPart)Model.ContentPart;
+    var blogPostType = contentPart.GetBlogPostType();
+
+
+    var blogPost = content.As<BlogPostPart>();
+    var field = (MediaLibraryPickerField)Model.ContentField;
+    var mediaParts = field.MediaParts.ToList();
+}
+
+@if (mediaParts.Any()) {
+
+    <div class="featured-media">
+        @*Gallery blog post type: displays images using a slider*@
+
+        @if (blogPostType == BlogPostTypes.Gallery) {
+            <div class="flexslider">
+                <ul class="slides">
+                    @foreach (var image in mediaParts) {
+                        @Display(BuildDisplay(image, "Thumbnail"))
+                    }
+                </ul>
+            </div>
+        }
+        else if (blogPostType == BlogPostTypes.Image) {
+            @*Image blog post type: display one image with an overlay showing the text "View" *@
+
+            @Display(BuildDisplay(mediaParts[0], "FeaturedImageThumbnail"))
+            <a class="post-overlay" href="@Url.ItemDisplayUrl(content)" rel="bookmark" title="@HttpUtility.HtmlEncode(blogPost.Title)">
+                <p class="view">@T("View") &rarr;</p>
+            </a>
+
+        }
+        else {
+            @*Content blog*@
+            <a class="featured-media" href="@Url.ItemDisplayUrl(content)" title="@HttpUtility.HtmlEncode(blogPost.Title)">
+                @Display(BuildDisplay(mediaParts[0], "FeaturedImageThumbnail"))
+            </a>
+        }
+    </div>
+}

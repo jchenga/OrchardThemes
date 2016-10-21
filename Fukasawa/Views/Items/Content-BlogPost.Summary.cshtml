@@ -1,0 +1,26 @@
+﻿@using Orchard.Blogs.Extensions;
+@using Orchard.Blogs.Models;
+@using Orchard.ContentManagement
+@using Orchard.Utility.Extensions;
+@{
+    var contentTypeClassName = ((string)Model.ContentItem.ContentType).HtmlClassify();
+    Model.Classes.Add(contentTypeClassName);
+    Model.Classes.Add("content-item");
+}
+@functions {
+    
+    string GetPostFormatClass(BlogPostPart part) {
+        return "format-image";
+    }
+
+}
+@{
+    var content = ((IContent) Model.ContentItem).As<BlogPostPart>();
+}
+<!-- post-container -->
+<div class="post-container">
+    <div id="post-@content.Id" class="post @GetPostFormatClass(content)">
+       @Display(Model.Content)
+    </div>
+
+</div>

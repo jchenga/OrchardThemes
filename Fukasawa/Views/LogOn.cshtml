@@ -1,0 +1,40 @@
+﻿@using Orchard.ContentManagement
+
+@{
+    var enableLostPassword = WorkContext.CurrentSite.As<Orchard.Users.Models.RegistrationSettingsPart>().EnableLostPassword;
+}
+<div id="logon-container" class="logon-container">
+    <div class="logon-inner">
+        <h3 class="logon-title">@Html.TitleForPage((string)Model.Title)</h3>
+        <p class="logon-description">
+            @Html.ValidationSummary(T("Login was unsuccessful. Please correct the errors and try again.").ToString())
+
+
+            @if (enableLostPassword) {
+                @Html.ActionLink(T("Lost your Password?").Text, "RequestLostPassword")
+            }
+        </p>
+       
+        @using (Html.BeginFormAntiForgeryPost(Url.Action("LogOn", new { ReturnUrl = Request.QueryString["ReturnUrl"] }), FormMethod.Post, new { @class = "logon-form" })) {
+            <p class="logon-username">
+                <label for="username-email">@T("Username")</label>
+                @Html.TextBox("userNameOrEmail", "", new { id = "username-email", autofocus = "autofocus" })
+                @Html.ValidationMessage("userNameOrEmail")
+            </p>
+            <p class="logon-password">
+                <label for="password">@T("Password")</label>
+                @Html.Password("password")
+                @Html.ValidationMessage("password")
+
+            </p>
+            <p class="logon-rememberme">
+                @Html.CheckBox("rememberMe", new {id = "remember-me"})<label class="remember-me" for="remember-me">@T("Remember Me")</label>
+            </p>
+            <p class="form-submit">
+                <button class="submit" id="submit" type="submit">@T("Sign In")</button>
+            </p>
+
+        }
+
+    </div>
+</div>

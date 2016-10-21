@@ -1,0 +1,26 @@
+﻿
+@{
+    Model.ContentItems.Classes.Add("content-items");
+    Model.ContentItems.Classes.Add("blog-posts");
+
+    Style.Require("MediaElement").AtHead();
+    Style.Require("OrchardMediaElement").AtHead();
+
+    Script.Require("MediaElement").AtFoot();
+    Script.Require("Masonry").AtFoot();
+    Script.Require("ImagesLoaded").AtFoot();
+    Script.Require("ThemeScripts").AtFoot();
+    Script.Require("Flexslider").AtFoot();
+
+    var list = Model.ContentItems;
+    var items = list.Items;
+
+
+}
+<div id="content" class="group">
+    <div class="posts" id="posts">
+        @foreach (var item in items) {
+            @Display(item)
+        }
+    </div>
+</div>

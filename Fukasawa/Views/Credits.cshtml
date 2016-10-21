@@ -1,0 +1,13 @@
+﻿@functions {
+
+    string GetYear() {
+        return Convert.ToString(DateTime.Now.Year);
+    }
+
+}
+<div class="credits">
+    <p>&copy; @GetYear()</p>
+    <p>@("Powered by") <a href="http://www.orchardproject.org">@T("Orchard")</a>
+    </p>
+    <p>Theme by <a href="http://www.andersnoren.se">Anders Nor&eacute;n</a>.</p>
+</div>

@@ -1,0 +1,23 @@
+﻿@{
+
+
+    Style.Require("GoogleFonts").AtHead();
+    Style.Require("GenericIcons").AtHead();
+    Style.Require("ThemeStyles").AtHead();
+}
+<div id="sidebar" class="sidebar">
+    <h1 class="blog-title">
+        <a href="@WorkContext.CurrentSite.BaseUrl">@WorkContext.CurrentSite.SiteName</a>
+    </h1>
+    @Display(Model.Navigation)
+
+    @Display.Credits()
+</div>
+<div id="wrapper" class="wrapper">
+        <div id="layout-content" class="content">
+            @if (Model.Content != null) {
+               
+                    @Display(Model.Content)
+            }
+    </div>
+</div>

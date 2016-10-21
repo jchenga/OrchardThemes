@@ -1,0 +1,18 @@
+﻿@using Orchard.ContentManagement
+@using Orchard.Taxonomies.Models
+@{
+    var taxonomy = ((IContent) Model.ContentItem).As<TermsPart>();
+    var terms = taxonomy != null ? taxonomy.TermParts : Enumerable.Empty<TermContentItemPart>();
+}
+<div class="post-meta-bottom">
+    <ul>
+        <li class="post-date">
+            @Display.DateTime(DateTimeUtc: Model.ContentPart.PublishedUtc, CustomFormat: T("MMMM d, yyyy"))
+        </li>
+        @if (terms.Any()) {
+            <li class="post-categories">
+                @(new HtmlString(string.Join(", ", terms.Select(t => Html.ItemDisplayLink(t.TermPart.Name, t.TermPart.ContentItem)))))
+            </li>
+        }
+    </ul> 
+</div>

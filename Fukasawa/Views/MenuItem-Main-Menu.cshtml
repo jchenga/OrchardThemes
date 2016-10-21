@@ -1,0 +1,14 @@
+﻿@{
+    Model.Metadata.Alternates.Clear();
+    Model.Metadata.Type = "MenuItemLink";
+
+    Model.Classes.Add("menu-item");
+    if ((bool) Model.Selected) {
+        Model.Classes.Add("current-menu-item");
+    }
+    var renderedMenuItemLink = Display(Model);
+    var tag = Tag(Model, "li");
+    @tag.StartElement
+    @renderedMenuItemLink
+    @tag.EndElement
+}

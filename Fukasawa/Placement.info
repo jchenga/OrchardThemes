@@ -1,0 +1,46 @@
+<Placement>
+  <!-- Customize where the shapes are rendered -->
+  <Match ContentType="Blog">
+    <Match DisplayType="Detail">
+      <Place Parts_Title="-"/>
+      <Place Parts_Common_Metadata="-"/>
+      <Place Parts_Blogs_Blog_Description="-"/>
+    </Match>
+   
+  </Match>
+  <Match ContentType="BlogPost">
+    <Match DisplayType="Summary">
+      <Place Fields_MediaLibraryPicker_Summary="Content"/>
+      <Place Fields_Enumeration="-"/>
+      <Place Parts_Common_Body_Summary="-"/>
+      <Place Fields_TaxonomyField="-"/>
+    </Match>
+    <Match DisplayType="Detail">
+      <Place Fields_TaxonomyField="-"/>
+      <Place Fields_Enumeration="-"/>
+      <Place Fields_MediaLibraryPicker="Header:1"/>
+      <Place Parts_Title="Content:1"/>
+      <Place Parts_Common_Metadata="Content:8"/>
+      <Place Parts_CommentForm="Footer"/>
+    </Match>
+  </Match>
+  <Match ContentType="CategoriesTerm">
+    <Match DisplayType="Detail">
+      <Place Parts_Title="-"/>
+      <Place Parts_Common_Metadata="-"/>
+    </Match>
+  </Match>
+  <!-- 
+  <Place Parts_Blogs_BlogArchives="Content:before"/>
+  <Place Parts_Blogs_RecentBlogPosts="Content:after"/>
+  <Match ContentType="Blog">
+    <Match DisplayType="Summary">
+      <Place Parts_Blogs_Blog_Description="Content:before"
+             Parts_Blogs_Blog_BlogPostCount="Meta:3"/>
+    </Match>
+  </Match>
+  <Match Path="/About">
+    <Place Parts_Common_Metadata="-"/>
+  </Match>
+-->
+</Placement>

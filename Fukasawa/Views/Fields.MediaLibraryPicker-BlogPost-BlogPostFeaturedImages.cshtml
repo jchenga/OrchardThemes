@@ -1,0 +1,12 @@
+﻿@using Orchard.MediaLibrary.Fields
+
+@{
+    var field = (MediaLibraryPickerField)Model.ContentField;
+    var contents = field.MediaParts.ToList();
+}
+
+@if (contents.Any()) {
+    <div class="featured-media">
+        @Display(BuildDisplay(contents[0], "FeaturedImageFull"))
+    </div>
+}

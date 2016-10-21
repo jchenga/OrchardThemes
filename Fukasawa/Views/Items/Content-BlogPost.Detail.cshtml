@@ -1,0 +1,26 @@
+﻿@using Orchard.Blogs.Models
+@using Orchard.ContentManagement
+@{
+    var content = ((IContent)Model.ContentItem).As<BlogPostPart>();
+    Model.Id = string.Format("post-{0}", content.Id);
+    Model.Classes.Add("single");
+    Model.Classes.Add("post");
+    var tag = Tag(Model, "div");
+}
+<div class="content thin">
+    <div class="post-container">
+        @tag.StartElement
+        @Display(Model.Header)
+        <div class="post-inner">
+
+            @Display(Model.Content)
+
+        </div>
+
+
+        <div>
+            @Display(Model.Footer)
+        </div>
+        @tag.EndElement
+    </div>
+</div>

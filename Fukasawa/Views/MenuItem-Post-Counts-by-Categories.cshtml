@@ -1,0 +1,11 @@
+﻿@using Orchard.Taxonomies.Models
+@using Orchard.Taxonomies.Navigation
+@{
+
+    Model.Classes.Add("cat-item");
+    var menuItem = (TaxonomyMenuItem) Model.Item;
+    var tag = Tag(Model, "li");
+    @tag.StartElement
+    <a href="@menuItem.Href">@menuItem.DisplayText</a> @:(@(((TermPart)menuItem.Content).Count))
+    @tag.EndElement
+}

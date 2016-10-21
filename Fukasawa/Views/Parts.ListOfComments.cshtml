@@ -1,0 +1,11 @@
+﻿@if (Model.CommentCount > 0) {
+    <div class="comments-container">
+        <div class="comments-inner">
+            <div class="comments">
+                <ol class="commentlist">
+                    @Display(Model.List)
+                </ol>
+            </div>
+        </div>
+    </div>
+}
